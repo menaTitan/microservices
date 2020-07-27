@@ -1,0 +1,29 @@
+Maven parent project
+	Web front-end
+	Login microservice
+	Events microservice
+
+Both services operate on separate microdatabases
+ [MySQL]
+
+Login service
+	POST - Authenticate login
+		/login
+		No distinction between user not found & password invalid (HTTP 401 on failure)
+	PUT - Create account
+		/register
+		202 on success
+	Uses accounts microDB
+
+Events service
+	GET - List of events
+		/events[?...]
+		Check token/header/something to see if login is valid
+		Query params: user = lists events user is registered for
+	POST - Register for event
+		/register
+		Check if user is already registered for event using auth token, return error if already registered
+
+Web interface
+	Use provided web UI
+	Update API calls to match new service?
