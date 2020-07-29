@@ -10,7 +10,10 @@ Login service
 	POST - Authenticate login
 		/login
 		No distinction between user not found & password invalid (HTTP 401 on failure)
-	PUT - Create account
+	GET - Check session token
+		/token
+		Returns username for user if the token is valid
+	POST - Create account
 		/register
 		202 on success
 	Uses accounts microDB

@@ -1,0 +1,13 @@
+- Create a login service that accepts username & password (application/json) (Don't worry about encryption for this) and returns a session token which is stored in the database
+- Create a token endpoint that accepts the session token and returns the username if the token is valid
+- Create a registration endpoint that accepts username & password (application/json)
+- Build the initial login service module
+- Build the initial events service module
+- Setup login microDB
+- Setup events microDB
+- Setup SQL server
+- Create the event listing endpoint
+- Create the "register for event" endpoint
+- Test login microservice
+- Test events microservice
+- Configure UI to point to microservices
