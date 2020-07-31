@@ -30,14 +30,19 @@ public class LoginMemberDAOImpl implements LoginMemberDAO{
 	@PersistenceContext private EntityManager em;
 	
 	@Override
+	@Transactional
 	public void saveMember(LoginMember member) {
-		// TODO Auto-generated method stub
-
+		em.persist(member);
 	}
+	
 	@Override
-	public Collection<LoginMember> getAllmembers() {
+	public Collection<LoginMember> getMembers(List<Integer> ids) {
 		
-		return memberRepository.findAll();
+		if (ids==null) {
+			return memberRepository.findAll();
+		} else {
+			return memberRepository.findAllById(ids);
+		}
 		
 		/*return jdbcTemplate.query("Select * from loginmember", 
 				new BeanPropertyRowMapper<LoginMember>(LoginMember.class));*/

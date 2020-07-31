@@ -1,5 +1,6 @@
 package com.microservice.controller;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,12 @@ public class LoginMemberController {
 	LoginMemberDAOImpl loginMemberDAO;
 	
 	@GetMapping("/members")
-	public Collection<LoginMember> getLoginMembers() {
-		return loginMemberDAO.getAllmembers();
+	public Collection<LoginMember> getLoginMembers(@RequestParam(name = "id", required = false) Integer[] ids) {
+		if (ids == null) {
+			return loginMemberDAO.getMembers(null);
+		} else {
+			return loginMemberDAO.getMembers(Arrays.asList(ids));
+		}
 	}
 	
 	@GetMapping("/token/{token}")
@@ -48,5 +53,10 @@ public class LoginMemberController {
 			}
 			return e.getMessage();
 		}
+	}
+	
+	@PostMapping("/register")
+	public void register(@RequestBody LoginMember member) {
+		loginMemberDAO.saveMember(member);
 	}
 }
